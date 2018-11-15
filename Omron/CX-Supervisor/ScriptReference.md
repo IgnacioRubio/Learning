@@ -28,7 +28,7 @@ display ("CAR", 100, 200)
 ```
 
 
-### Close page
+#### Close page
 - **Syntax**
 ```java
 close ("pagename")

@@ -1,0 +1,69 @@
+# INTRODUCCIÓN AL PENTEST WEB
+
+Pentest —> test de penetración (en este caso sobre una aplicación web), el cual utiliza un conjunto de pruebas cuya finalidad es la de evaluar la efectividad de los protocolos de seguridad de los servicios informáticos y telepáticos de una organización.
+
+
+## CLASIFICACIÓN PENTEST
+
+- **Caja negra** —> no se dispone información interna de la organización
+- **Caja blanca** —> el pentester dispone de total información sobre el sistema que se va a auditar
+- **Caja gris** —>  combinación de caja negra + caja blanca
+
+
+## METODOLOGÍAS MÁS UTILIZADAS
+
+- **NIST** (National Institute of Standard and Technology)
+- **OWASP** (Open Web Application Security Project)
+- **OSSTMM** (Open Source Security Testing Methodology Manual)
+
+
+## ETAPAS
+
+1. **Reconocimiento:** se obtendrá toda la información que esté disponible en medios de acceso público.
+		  + *Reconocimiento activo:* el atacante interactuar directamente con la víctima. Ejemplo, mediante ingeniería social
+		  + *Reconocimiento pasivo:* ejemplo, hacking con buscadores, herramientas de gestión de red, búsqueda de metadatos o indagación en redes sociales.
+2. **Enumeración:** se escanea la red objetivo para obtener una imagen de su arquitectura. Como objetivos determinar rangos de IP, nombres de maquinas, sistemas operativos y versiones, detección de cortafuegos, IDS/IPS, así como servicios activos.
+		  + *Herramientas:* map, hping3, traceroute
+3. **Análisis:** se busca vulnerabilidad en los dispositivos encontrados en las fases previas.
+		  + *Herramientas:* nessus, w3af, acunetix, appscan, nmap
+4. **Explotación:** emplear explotación contra servicios y aplicaciones vulnerables. También se realizan pruebas de inyección de código manuales apoyándose en los resultados de los escáneres automatizados, para así eliminar falsos positivos.
+  + *Herramientas:* Metasploit, Canvas
+5. **Documentación:** documentar la información obtenida.
+
+
+## PROTOCOLO HTTP
+
+El protocolo HTTP corresponde a “Hyper Text Transfer Protocol”, y es un protocolo de la capa aplicación del modelo OSI.
+Este protocolo permite realizar peticiones y respuestas en una arquitectura cliente-servidor.
+
+- Campos de la cabecera de la petición
+	Accept —> Indica el tipo de contenido aceptado por el navegador del cliente
+	Accept-Charset —> Conjunto de caracteres permitidos
+	Accept-Languague —> Idiom esperado por el navegador
+	Authorization —> Identificación del cliente ante el servidor
+	Content-Encoding —> Codificación del cuerpo de la petición
+	Content-Languague —> Idioma del cuerpo de la petición
+	Content-Type —> Tipo del cuerpo de la petición
+	Date —> Fecha de inicio de la transferencia de datos
+	Forwarded —> Campo empleado por equipos intermediarios
+	From —> Indica el correo electrónico del cliente
+	Referer —> Dirección de origen de la petición del recurso
+	User-Agent —> Información del cliente como nombre de la aplicación, sistema operativo, versión, idioma
+
+- Campos de la cabecera de la respuesta
+	Content-Encoding —> Codificación del cuerpo de la respuesta
+	Content-Language —> Idioma del cuerpo de la respuesta
+	Content-Length —> Longitud del cuerpo de la respuesta
+	Content-Type —> Tipo del cuerpo de la respuesta
+	Date —> Fecha de inicio de la transferencia de la respuesta
+	Expires —> Fecha final para utilizar los datos
+	Forwarded —> Campo empleado por equipos que se encuentran entre el cliente y el servidor
+	Location —> Redirección a una nueva URL
+	Server —> Información del servidor
+
+- Códigos de respuesta
+	1XX —> Mensaje informativo
+	2XX —> La petición ha sido recibida y procesada correctamente
+	3XX —> Indica que hay que realizar una redirección
+	4XX —> Se ha producido un error en el cliente
+	5XX —> Se ha producido un error en el servidor

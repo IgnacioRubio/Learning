@@ -5,7 +5,7 @@
 ### CONTROL STATEMENTS
 
 #### Simple conditional statements
--**Syntax**
+- **Syntax**
 ```java
 IF condition THEN
  statementblock1
@@ -22,11 +22,29 @@ ENDIF
 *Argument:* condition --> the condition es made up of points and constants, using relational. logical or arithemetical notation as a test. The condition can evalute Boolean state 'TRUE' and 'FALSE', Interger or Real numbers, or a text string.
 *Argument:* statementblock1 --> one or more statements which are perfomed if the condition is met.
 *Argument:* statementblock2 --> one or more statements which are perfomed if the condition is met.
--**Examples**
+- **Examples**
 ```java
 IF fuel < 0 THEN
  fuel = 0
 ENDIF
+```
+
+### SUBROUTINES
+
+#### return
+- **Syntax**
+```java
+RETURN
+```
+- **Example**
+```java
+IF limit > 1000 THEN
+ RETURN
+ELSE
+ value = limit
+REM final part of script
+POLYGON_1.COLOUR = red
+ELLIPSE_5.WIDTH = value
 ```
 
 ## FUNCTIONS AND METHODS
@@ -77,12 +95,12 @@ close (textpoint"
 ### TEXT COMMANDS
 
 #### Message
--**Syntax**
+- **Syntax**
 ```java
 Message("message")
 ```
 *Argument:* message (string) --> contains the text string that is displayed in the message box.
- -**Examples**
+ - **Examples**
 ```java
 Message("this is a message")
 ```

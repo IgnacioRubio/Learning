@@ -1,5 +1,33 @@
 # CX-SUPERVISOR - SCRIPT REFERENCE
 
+## SCRIPT LANGUAGE
+
+### CONTROL STATEMENTS
+
+#### Simple conditional statements
+-**Syntax**
+```java
+IF condition THEN
+ statementblock1
+ENDIF
+``` 
+or
+```java
+IF condition THEN
+ statementblock1
+ELSE
+ statementblock2
+ENDIF
+```
+*Argument:* condition --> the condition es made up of points and constants, using relational. logical or arithemetical notation as a test. The condition can evalute Boolean state 'TRUE' and 'FALSE', Interger or Real numbers, or a text string.
+*Argument:* statementblock1 --> one or more statements which are perfomed if the condition is met.
+*Argument:* statementblock2 --> one or more statements which are perfomed if the condition is met.
+-**Examples**
+```java
+IF fuel < 0 THEN
+ fuel = 0
+ENDIF
+```
 
 ## FUNCTIONS AND METHODS
 
@@ -11,11 +39,10 @@
 display ("pagename")
 ```
 or
-
 ```java
 display ("pagename", X, Y)
 ```
-1. *Argument*: pagename --> this is the name of the page for display, based on its filename without the file extension
+*Argument:* pagename (string) --> this is the name of the page for display, based on its filename without the file extension
 - **Examples**
 ```java
 display ("CAR")
@@ -33,7 +60,7 @@ display ("CAR", 100, 200)
 ```java
 close ("pagename")
 ```
-1. *Argument*: pagename --> this is the name of the page for display, based on its filename without the file extension
+*Argument:* pagename (string)--> this is the name of the page for display, based on its filename without the file extension
 > **Note:** The 'close' operation will cause the page to be unloaded, including all objects, ActiveX controls and scripts.  They can't be accessed.
  
 > **Note:** Where the script containing the 'close' instruction is on the page to be closed, this should be the last instruction in the script s it will cause the script to be unloaded.
@@ -44,6 +71,20 @@ close ("CAR")
 
 textpoint = "CAR"
 close (textpoint"
+```
+
+
+### TEXT COMMANDS
+
+#### Message
+-**Syntax**
+```java
+Message("message")
+```
+*Argument:* message (string) --> contains the text string that is displayed in the message box.
+ -**Examples**
+```java
+Message("this is a message")
 ```
  
 # BIBLIOGRAPHY

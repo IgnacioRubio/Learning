@@ -17,7 +17,7 @@ IF condition THEN
  statementblock1
 ELSE
  statementblock2
-ENDIF
+END IF
 ```
 *Argument:* condition --> the condition es made up of points and constants, using relational. logical or arithemetical notation as a test. The condition can evalute Boolean state 'TRUE' and 'FALSE', Interger or Real numbers, or a text string.
 *Argument:* statementblock1 --> one or more statements which are perfomed if the condition is met.
@@ -26,7 +26,7 @@ ENDIF
 ```java
 IF fuel < 0 THEN
  fuel = 0
-ENDIF
+END IF
 ```
 
 ### SUBROUTINES
@@ -42,6 +42,7 @@ IF limit > 1000 THEN
  RETURN
 ELSE
  value = limit
+END IF
 REM final part of script
 POLYGON_1.COLOUR = red
 ELLIPSE_5.WIDTH = value

@@ -67,3 +67,31 @@ Este protocolo permite realizar peticiones y respuestas en una arquitectura clie
 	3XX —> Indica que hay que realizar una redirección
 	4XX —> Se ha producido un error en el cliente
 	5XX —> Se ha producido un error en el servidor
+	
+## FINGERPRINTING WEB SERVERS
+
+*Fingerprinting* --> hace referencia a la huella distintiva que permite identificar un sistema (se suele estar haciendo referencia a la identificación de la arquitectura, sistema operativo y servicios a partir de cómo se haya implementado el protocolo TCP/IP).
+
+## TIPO Y VERSIÓN DEL SERVIDOR WEB
+
+- **Etiquetas Server y Vía de la cabecera HTTP:** Consiste en inspecccionar la cabecera HTTP devuelta por el servidor web en busca de la etiqueta <<Server>>.
+	
+> **Ejemplos**
+>  + Server: nginx/0.7.67
+>  + Server: Microsoft-IIS/5.0
+>  + Server: Oracle-Application-Server-10g OracleAS-Web-Cache-10g/9.0.4.1.0
+
+> **Herramientas**
+>  + *netcat* --> nc 192.168.154.138 80 // nc *IP* *puerto*
+>  + *telnet* --> telnet 192.168.1.154.138 80 // telnet *IP* *puerto*
+
+Muchos administradores deciden modificar el contenido de la etiqueta <<Server>> para evitar revelar información sobre el software usado.
+	
+El campo <<Vía>> de la cabecera es utilizado por *proxies* y *gateways* para indicar los protocolos entre el <<User Agent>> y el <<Server>> en las peticiones y entre el servidor de origen y el cliente en las respuestas.
+	
+- **Identificación a través de páginas de error:** la idea consiste en enviar peitciones mal formadas para que el servidor responda con una página de error. Si el desarrollador/administrador no se ha preocupado de establecer páginas de error personalizadas, entonces se mostrarán los mensajes de error por defecto.
+
+- **Análisis del comportamiento de la respuesta HTTP:**
+>  + *Distintos campos en la cabecera.* Cuando se realiza una petición <<HEAD>>, la cabecera de la respuesta puede contener de forma opcional algunos campos. El comportamiento de Apache es el de mostrar <<tags>> como <<Expires>> o <<Vary>>, mientras que Microsoft IIS suele obviarlos.
+>  + *Orden de los campos de la cabecera.* En la cabecera de la respuesta de un servidor IIS primero aparece el campo <<Server>> y después el campo <<Date>>. Mientras que en la respuesta de un servidor Apache es al contrario.
+>  + *Lista de los métodos permitidos.* 

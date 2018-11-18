@@ -94,4 +94,5 @@ El campo <<Vía>> de la cabecera es utilizado por *proxies* y *gateways* para in
 - **Análisis del comportamiento de la respuesta HTTP:**
 >  + *Distintos campos en la cabecera.* Cuando se realiza una petición <<HEAD>>, la cabecera de la respuesta puede contener de forma opcional algunos campos. El comportamiento de Apache es el de mostrar <<tags>> como <<Expires>> o <<Vary>>, mientras que Microsoft IIS suele obviarlos.
 >  + *Orden de los campos de la cabecera.* En la cabecera de la respuesta de un servidor IIS primero aparece el campo <<Server>> y después el campo <<Date>>. Mientras que en la respuesta de un servidor Apache es al contrario.
->  + *Lista de los métodos permitidos.* 
+>  + *Lista de los métodos permitidos.* Cuando se realiza una petición al servidor con el método <<OPTIONS>>, la respuesta contendrá en el campo <<Allow>> la lista de métodos soportados por dicho servidor. Ese es el comportamiento de Apache, pero en el caso de Microsoft IIS también devuelve el campo <<Public>> con esa información.
+>  + *Respuesta ante petición DELETE.* En muchos servidores una petición <<DELETE>> estará permitida, retornando un código de error. La diferencia está en los distintos códigos de error devueltos por Apache y Microsoft IIS.

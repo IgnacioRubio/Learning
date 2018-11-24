@@ -129,3 +129,30 @@ Extensión | Descripción
 > ASPSESSIONIDFBEDIWXIOB=CEDUILKHGBEURJFCBUOMNEWS => Suele corresponder a **Microsoft IIS**  
 > PHPSESSID=acfirg7v0e4ndwrtl4mnwuifci => Suele corresponder a **Apache**  
 > CFID=658356, CFTOKEN=89346587 => Suele corresponder a **ColdFusion**
+
+
+## HERRAMIENTAS AUTOMATIZADAS
+
+- **Httprint.** Se trata de una herramienta de *fingerprinting* para servidores web que permite llevar a cabo el proceso de identificación incluso cuando hay presentes "web application firewalls", como ModSecurity, o esté ofuscado o cambiado el contenido del banner del servidor web. También es capaz de detectar dispositivos con servicios web habilitados, como puntos de acceso wifi, routers, switches o impresoras. Para ello, el programa buscará coincidencias entre la firma del servidor objetivo y una base de datos de firmas editable y ampliable que tiene la herramienta (signature.txt).
+
+```shell
+httprint {-h <host> | -i <input file> | -x <nmap xml file>} -s <signatures> [... options]
+
+-h <host>		host can be either an IP address, a symbolic name, an IP range or a URL
+-i <input text file>	file containing list of hosts as described above in text format
+-x <nmap xml file>	nmap -oX option generated cml file as input file. Ports which can be consider as http ports are taken 
+			from the nmapportlist.txt file
+-s <signatures>		file containing http fignerprint signatures
+
+Options:
+
+-o <output file>	output in html format
+-oc <output file>	output in csv format
+-ox <output file>	output in xml format
+-noautossl		disable automatic detection of SSL
+-tp <ping timeout>	ping timeout in miliseconds. Default is 400 ms. Maxium 30000 ms
+-ct <1-100>		default is 75. Do not change
+-ua <User Agent>	deafault is Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)
+-t <timeout>		connection/read timeout in miliseconds
+
+```

@@ -156,3 +156,29 @@ Options:
 -t <timeout>		connection/read timeout in miliseconds
 
 ```
+
+> **Ejemplo**  
+> ```shell
+> ./httprint -h 192.168.56.101 -s signatures.txt
+>```
+
+- **Nmap.** Se trata de una herramienta que permite escanear redes para la realización de auditorías de seguridad. Una característica muy potente de este programa es el llamado *Nmap Script Engine (NSE),* un motor que permite que la herramienta incorpore scripts.  
+Windows, los scripts se encontrarán en el directorio *C:\Program Files\Nmap\scripts*, y en Linux en */usr/share/nmap/scripts* o */usr/local/share/nmap/scripts*. Nuevos scripts deberán ser colocarse en esa carpeta.
+
+Script | Descripción
+-------|------------
+http-enum | Enumera directorios usados por aplicaciones y servidores web populares
+http-headers | Realiza una petición HEAD de la carpeta raíz del servidor web y devuelve la cabecera HTTP de la respuesta
+http-methods | Devuelve las opciones soportadas por un servidor web, enviando para ello una petición HTTP OPTIONS
+http-favicon | Obtiene el favicon de la web objetivo y lo compara con una base de datos de iconos empleados por aplicaciones web populares. Si hay una coincidencia, se muestra el nombre de la aplicación web que lo usa. En caso contrartio, se muestra el has MD5 del icono
+http-php-version | Intenta devolver la versión de PHP de un servidor web
+http-robots.txt | Busca páginas que no deben ser rastreadas por crawlers en el fichero robots.txt de la ríaz del servidor
+http-sitemap-generator | Muestra la estructura de directorios, indicando los tipos de ficheros que contienen
+http-waf-detect | Envía payloads maliciosos al servidor web para comprobar si está protegido por algún IDS, IPS o WAF
+http-waf-fingerprint | Intenta detectar la presencia de waf, así como su tipo y versión
+
+> **Example**  
+> ```shell
+> nmap -sV --script=http-enum,http-methods 192.168.56.101
+> ```
+

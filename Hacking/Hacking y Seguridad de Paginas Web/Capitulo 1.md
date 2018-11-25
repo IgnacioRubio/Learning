@@ -277,4 +277,46 @@ OPTIONS:
  -u, --updateDB					Pull latest DB files from repo (may require root if blindelephan was installed with root
 ```
 
+## INFORMATION GATHERING
 
+Esta fase de recolección de información es una de las más tempranas en un proceso de auditoría.
+
+
+- **Ingenería social.** Por ingenería social se entiende cualquier técnica usada que pretende aprovecharse del factor humano para la consecución de revelaciones de información.
+
+
+- **Información de registro de nombre de domino.** Cuando se registra un nombre de dominio público en Interner o cuando se solicita la propiedad de una dirección IP pública, o un rango de las mismas, esta queda asociada a un registro con información diversa sobre el titular del servicio. En muchas ocasiones, entre esta información de registro se encuentran datos de interés, como servidores DNS o direcciones de correo electrónico de administradores. El protocolo que permite la consulta de esta información se denomina *whois*, y es posible trabajar con el mismo a través de herramientas de línea de comando o de portales web que ofrecen una sencilla interfaz para el usuario.
+
+
+- **Consultas de zona DNS**
+> Los servidores *DNS* (Domain Name System) son aquellos encargados de realizar la traducción de nombres de dominio, más sencillos de recordar por las personas, a sus correspondientes direcciones IP en Internet, que son los parámetros que realmente se usan en las comunicaciones de red.
+
+Una zona DNS es un registro de información que presenta todas las entradas necesarias para la correcta resolución DNS de los servicios asociados a un nombre de dominio, como podrían ser los nombres de host presentes bajo dicho nombre de dominio o los servidores de correo electrónico encargados de gestionar este servicio. Cada una de estas entradas presentará, entre otros datos, un tipo y un valor.
+
+ + Las entradas de tipo **MX** tendrían como valor una cadena de texto que indetificará el servidor de correo electrónico. Por ejemplo, si se está consultando la zona DNS del nombre de dominio "ejemplo.como", un valor para el registro MX podría ser "smtp.ejemplo.com"
+ + Las entradas de tipo **NS** tendrán como valor una cadena de texto que identificará el servidor de DNS. Para "ejemplo.com", un valor para el registro MS podría ser "ns1.ejemplo.com"
+ 
+> **Herramientas**  
+> + Nslookup. Herramienta tradicional para la realización de consultas DNS (su nombre procede de name server lookup). Sin embargo, la corporación *Internet Systems Consortium* la ha catalagoda como anticuada. Con nslookup puede operarse de forma interactiva o no-interactiva  
+> + Dig. Se trata de una potente herramienta de consultas DNS que sustituiría a nslookup  
+> + Host. Herramienta más sencilla, pero de gran utilidad para consultas de menos extensión, que permite realizar resoluciones de nombres en las que no se precisan tantos detalles
+
+
+## HACKING CON BUSCADORES
+
+Una técnica que complementaría a la fase de information gathering consiste en usar los propios motores de búsqueda de Internet para localizar información sensible, o útil para un posible atacante, sobre el objetivo.
+
+- **Google.**
+
+Operador | Descripción
+---------|------------
+site | mediante este operador se restringe la búsqueda tan solo a páginas que estén dentro del sitio web o dominio especificado. Este operador es de gran utilidad para acotar las búsquedas cuando ya se conocen el sitio o los sitios web objetivo de ataque
+intitle | gracias a este operador, la cadena introducida será buscada tan solo en el partado de título de las páginas web. Si se desea introducir más de un término de búsqueda --deberán estar todos presentes en el título de la página web-- se usará la variante **allintitle**.
+inurl | el patarón de búsqueda introducido deberá estar localizado en la propia URL de la página web. De igual forma que en el caso anterio, si se desea introducir más de un parámetro, se usará el operador **allinurl**. Por ejemplo, si se introdujese la cadena de búsqueda "allinurl: ejemplo hacking", uno de los posibles resultados sería la web presente en la URL: *http//www.**ejemplo**.com/subdir/**hacking**.html*
+intext | la cadena de búsqueda introducida deberá estar localizada en el texto de la página web. De igual forma que en los casos anteriores, si se desea introducir más de un parámetro, se usará más de un parámetro, se usará el operador **allintext**
+filetype | acota la búsqueda a las páginas, o recursos ofrecidos a través de servidores web, cuya extensión sea la indicada a continuación del operador. Estas búsquedas son de gran utilidad para localizar posibles documentos o ficheros sensibles que, por error u olvido, se han dejado dentro de los directorio públicos de un sitio web
+
+> **Ejemplos**  
+> + filetype: sql -> buscará ficheros con extensión SQL  
+> + intitle: "Index of" .bash_history -> el fichero *.bash_history* contiene los últimos comandos introducidos por un usuario que, en algunos casos, podrían incluso contener contraseñas pasadas como parámetros a comandos  
+> + inurl: admin.php -> localización de portales de administradores de sitios web, muchos de ellos compuestos por gestores de contenidos públicos. Este tipo de búsqueda se emplea para lanzar ataques de fuerza bruta sobre las páginas de autenticación, que suele haber para poder acceder a la zona de administración del portal

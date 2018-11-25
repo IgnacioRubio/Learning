@@ -182,3 +182,99 @@ http-waf-fingerprint | Intenta detectar la presencia de waf, así como su tipo y
 > nmap -sV --script=http-enum,http-methods 192.168.56.101
 > ```
 
+
+- **WhatWeb.** Es una herramienta cuyo objetivo es la de realizar un proceso de fingerprinting de servidores web, gestores de contenidos (CMS), frameworks para blogs, librerías JavaScript, dispositivos con acceso webm etc. Entre la información obtenida se encuentra el modelo y versión del servidor, tecnologías empleadas, direcciones de correo, páginas de error...  
+
+Para realizar  ese proceso *WhatWeb* dispone de una gran cantidad de plugins.  
+
+El programa se puede configurar con diversos niveles de agresividad:
+
+Nivel | Descripción
+------|------------
+1 (Pasive) | Hace una petición HTTP por objetivo, excepto cuando se produce una redirección
+2 (Polite) | Reservada para usos futuros
+3 (Agressive) | Cuando se produce una coincidencia del objetivo con un plugin de forma pasiva, entonces este nivel lanzará funciones más específicas de plugins realizando un descubrimiento más agresivo
+4 (Heavy) | Realiza un descubrimiento que genera mucho más ruido mediante funciones para todos los plugins
+
+Algunas características:
+  + *Torificar* la herramienta (permite que las pruebas sean lanzadas estableciendo un proxy Tor)
+  + Editar la cabera HTTP de las peticiones
+  + Seguir las redirecciones hasta cierto nivel
+  + El spider de WhatWeb puede rastrear recursivamente los enlaces de la web ojetivo
+  + Indicar el número máximo de hilos que realizarán las tareas de descubrimiento
+  + Devolver la salida en diferentes formatos (XML, log, JSON, RubyObject, MongoDB, etc)
+  
+> **Tor**  
+> El término *Torificar* hace referencia al uso de la red Tor, cuyas siglas corresponde a The Onion Router.  
+> *Tor* es un proyecto cuyo objetivo principal es el desarrollo de una red de comunicaciones de uso público, en la que la comunicación de los usuarios se encamina por múltiples nodos, que permiten ofuscar el origen de la conexión, de este modo ofrece a los usuarios que quieran utilizarlo una herramienta que permita obtener cierto anonimato en Internet.
+
+```shell
+whatweb [options] <URLs>
+
+TARGET SELECTION:
+ <TARGET>			Enter URLs, hostname, IP addresses, or nmap-format IP ranges
+ --input-file=FILE, -i		Read targets from a file
+ 
+AGREESION:
+ --agresion, -a=LEVEL		Set the aggression level. Default 1
+ 				1. Stealthy, makes one HTTP request per target and also follows redirects
+				3. Aggresive, if a level 1 plugin is matched, addional request will be made
+
+PLUGINS:
+ --list-plugins, -l		List all plugins
+ --info-plugins, -I=[SEARCH]	List all plugins with detailed information. Optionally search with a keyword
+ --search-plugins=STRING	Search for STRING in HTTP responses. Reports with a plugin named Grep
+ 
+OUTPUT:
+ --verbose, -v			Verbose output includes plugin descriptions. Use twice for debuggind
+ --colour, --color=WHEN		Control whether coour is used. WHEN may be 'never', 'always', or 'auto
+ 
+HELP & MISCELLANEOUS:
+ --short-help			This short usage help
+ --help, -h			Complete usage help
+```
+
+> **Example**  
+> + Scan example.com  
+> ```shell
+> whatweb example.com
+> ```  
+> + Scan reddit.com slashdot.org with verbose plugin description
+> ```shell
+> whatweb -v reddit.com slashdot.org
+> ``` 
+> + An aggressive scan of wired.com detects the exact version of WordPress
+> ```shell
+> whatweb -a 3 www.wired.com
+> ```  
+> + Scan the local network quickly and suppress erros
+> ```shell
+> whatweb --no-erros 192.168.0.0/24
+> ```  
+> + Scan the local network for HTTPS website
+> ```shell
+> whatweb --no-erros --url-prefix https://192.168.0.0/24
+> ```  
+> + Scan for corssdomain policies in the Alex Top 1000
+> ```shell
+> whatweb -i plugin-development/alexa-top-100.txt \ --url-suffix /crossdomain.xml -p crossdomain_xml
+> ```
+
+
+- **BlindElephant.** Es una herramienta escrita en Python cuyo objetvio es la de descubrir la versión de aplicaciones web conocidas, frameworks para blogs, gestores de contenidos populares (CMS), como Wordpress, Drupal, Joomla, phpMyAdmin, etc. Y, para ello, se han precalculado los hashes de las distintas versiones de dichas plataformas web para contrastarlas con ficheros estáticos de rutas conocidas, y así poder hacer una aproximación del modelo y versión del objetivo en función de las respuestas obtenidas. Se trata de una técnica de detección no invasiva y rápida.
+
+```shell
+BlindElephant.py [options] url appName
+
+OPTIONS:
+ -h, --help					show this help message and exit
+ -p PLUGINNAME, --pluginName=PLUGINNAME		fingerprint version of plugin (should apply to web app given in appname)
+ -s, --skip					skip fingerprinting webpp, just fingerprint plugin
+ -n NUMPROBES, --numProbes=NUMPROBES		number of files to fetch (more may increase accuracy). Default: 15
+ -w, --winnow					if more than one version are returned, use winnowing to attempt to narrow it 
+ 						down (up to numProbes additional request)
+ -l, --list					list supported webapps and plugins
+ -u, --updateDB					Pull latest DB files from repo (may require root if blindelephan was installed with root
+```
+
+

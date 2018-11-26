@@ -320,3 +320,15 @@ filetype | acota la búsqueda a las páginas, o recursos ofrecidos a través de 
 > + filetype: sql -> buscará ficheros con extensión SQL  
 > + intitle: "Index of" .bash_history -> el fichero *.bash_history* contiene los últimos comandos introducidos por un usuario que, en algunos casos, podrían incluso contener contraseñas pasadas como parámetros a comandos  
 > + inurl: admin.php -> localización de portales de administradores de sitios web, muchos de ellos compuestos por gestores de contenidos públicos. Este tipo de búsqueda se emplea para lanzar ataques de fuerza bruta sobre las páginas de autenticación, que suele haber para poder acceder a la zona de administración del portal
+
+
+- **SHODAN.** (https://www.shodan.io/)[SHODAN] surgió como un portal permitiendo la indexación de servicios a través de los banners o firmas expuestas por los servidores.  
+
+Actualmente, SHODAN pertmite realizar búsquedas, intrudocuendo diversos criterios o patrones.
+
+Filtro | Descripción
+---------|------------
+city | filtro que permite, a través de la geolocalización de la dirección del servidor, acotar la búsqueda a ciudades concretas
+country | actuando sobre los países. En caso de usar el filtro de *city*, es recomendable emplear este para evitar confusiones de ciudades con el mismo nombre
+os | posibilita restringir la búsqueda a servicios que estén ejecutandose sobre sistemas operativos específicos
+port | puerto del servicio que se va a buscar

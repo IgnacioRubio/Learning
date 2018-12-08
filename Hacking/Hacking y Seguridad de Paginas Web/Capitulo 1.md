@@ -322,7 +322,7 @@ filetype | acota la búsqueda a las páginas, o recursos ofrecidos a través de 
 > + inurl: admin.php -> localización de portales de administradores de sitios web, muchos de ellos compuestos por gestores de contenidos públicos. Este tipo de búsqueda se emplea para lanzar ataques de fuerza bruta sobre las páginas de autenticación, que suele haber para poder acceder a la zona de administración del portal
 
 
-- **SHODAN.** (https://www.shodan.io/)[SHODAN] surgió como un portal permitiendo la indexación de servicios a través de los banners o firmas expuestas por los servidores.  
+- **SHODAN.** [https://www.shodan.io/](SHODAN) surgió como un portal permitiendo la indexación de servicios a través de los banners o firmas expuestas por los servidores.  
 
 Actualmente, SHODAN pertmite realizar búsquedas, intrudocuendo diversos criterios o patrones.
 
